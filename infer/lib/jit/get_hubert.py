@@ -1,10 +1,10 @@
 import math
 import random
 from typing import Optional, Tuple
-from fairseq.checkpoint_utils import load_model_ensemble_and_task
 import numpy as np
 import torch
 import torch.nn.functional as F
+from infer.lib.checkpoint_compat import load_trusted_model_ensemble_and_task
 
 # from fairseq.data.data_utils import compute_mask_indices
 from fairseq.utils import index_put
@@ -266,7 +266,7 @@ def apply_mask(self, x, padding_mask, target_list):
 def get_hubert_model(
     model_path="assets/hubert/hubert_base.pt", device=torch.device("cpu")
 ):
-    models, _, _ = load_model_ensemble_and_task(
+    models, _, _ = load_trusted_model_ensemble_and_task(
         [model_path],
         suffix="",
     )

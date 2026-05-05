@@ -4,6 +4,7 @@ import traceback
 
 os.environ["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
 os.environ["PYTORCH_MPS_HIGH_WATERMARK_RATIO"] = "0.0"
+sys.path.append(os.getcwd())
 
 device = sys.argv[1]
 n_part = int(sys.argv[2])
@@ -23,6 +24,7 @@ import numpy as np
 import soundfile as sf
 import torch
 import torch.nn.functional as F
+from infer.lib.checkpoint_compat import load_trusted_model_ensemble_and_task
 
 if "privateuseone" not in device:
     device = "cpu"
@@ -86,7 +88,7 @@ if os.access(model_path, os.F_OK) == False:
         % model_path
     )
     exit(0)
-models, saved_cfg, task = fairseq.checkpoint_utils.load_model_ensemble_and_task(
+models, saved_cfg, task = load_trusted_model_ensemble_and_task(
     [model_path],
     suffix="",
 )

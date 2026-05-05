@@ -16,6 +16,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torchcrepe
 from torchaudio.transforms import Resample
+from infer.lib.checkpoint_compat import load_trusted_model_ensemble_and_task
 
 now_dir = os.getcwd()
 sys.path.append(now_dir)
@@ -96,7 +97,7 @@ class RVC:
             self.resample_kernel = {}
 
             if last_rvc is None:
-                models, _, _ = fairseq.checkpoint_utils.load_model_ensemble_and_task(
+                models, _, _ = load_trusted_model_ensemble_and_task(
                     ["assets/hubert/hubert_base.pt"],
                     suffix="",
                 )

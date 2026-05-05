@@ -25,7 +25,7 @@ def uvr(model_name, inp_root, save_root_vocal, paths, save_root_ins, agg, format
             save_root_ins.strip(" ").strip('"').strip("\n").strip('"').strip(" ")
         )
         if model_name == "onnx_dereverb_By_FoxJoy":
-            pre_fun = MDXNetDereverb(15, config.device)
+            pre_fun = MDXNetDereverb(10, config.device)
         else:
             func = AudioPre if "DeEcho" not in model_name else AudioPreDeEcho
             pre_fun = func(

@@ -1,6 +1,6 @@
 import os
 
-from fairseq import checkpoint_utils
+from infer.lib.checkpoint_compat import load_trusted_model_ensemble_and_task
 
 
 def get_index_path_from_model(sid):
@@ -20,7 +20,7 @@ def get_index_path_from_model(sid):
 
 
 def load_hubert(config):
-    models, _, _ = checkpoint_utils.load_model_ensemble_and_task(
+    models, _, _ = load_trusted_model_ensemble_and_task(
         ["assets/hubert/hubert_base.pt"],
         suffix="",
     )
