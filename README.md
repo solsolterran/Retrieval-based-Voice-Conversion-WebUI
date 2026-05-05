@@ -1,5 +1,5 @@
 <div align="center">
-
+<h2>This is best used with Python 3.10 - SolTerran<h2>
 <h1>Retrieval-based-Voice-Conversion-WebUI</h1>
 一个基于VITS的简单易用的变声框架<br><br>
 
